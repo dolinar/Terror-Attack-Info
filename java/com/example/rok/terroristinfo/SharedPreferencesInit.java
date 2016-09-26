@@ -14,6 +14,7 @@ public class SharedPreferencesInit {
     public SharedPreferencesInit(Activity activity) {
         this.activity = activity;
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+	System.out.println("ok");
     }
 
     protected void recreateOnChange() {
