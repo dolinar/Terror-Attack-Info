@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Notifications">
+        <CheckBoxPreference
+            android:title="Notify me"
+            android:summary="@string/notify"
+            android:defaultValue="false"
+            android:key="notifyCheckbox"
+            />
+
+        <EditTextPreference
+            android:title="Notify me when:"
+            android:summary="@string/notify_when"
+            android:defaultValue="100"
+            android:inputType="number"
+            android:key="notifyNumber"
+            >
+
+        </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Map">
+        <ListPreference
+            android:title="Map type"
+            android:summary="@string/map_type"
+            android:key="listMapType"
+            android:entries="@array/listMap"
+            android:entryValues="@array/listValuesMap"
+            android:defaultValue="normal"
+            >
+        </ListPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Events">
+
+        <ListPreference
+            android:title="Event age display"
+            android:key="listEventAge"
+            android:summary="@string/event_age"
+            android:entries="@array/listTime"
+            android:entryValues="@array/listValuesTime"
+            android:defaultValue="oneMonth"
+            >
+        </ListPreference>
+
+        <MultiSelectListPreference
+            android:title="Event type display"
+            android:key="listEventType"
+            android:summary="@string/event_type"
+            android:entries="@array/listEventsType"
+            android:entryValues="@array/listValuesEventsType"
+            android:defaultValue="@array/listValuesEventsType"
+            >
+
+        </MultiSelectListPreference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

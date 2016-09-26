@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="listMap">
+        <item>Normal</item>
+        <item>Satellite</item>
+        <item>Terrain</item>
+    </string-array>
+
+    <string-array name="listValuesMap">
+        <item>normal</item>
+        <item>satellite</item>
+        <item>terrain</item>
+    </string-array>
+
+
+    <string-array name="listTime">
+        <item>1 Day</item>
+        <item>2 Days</item>
+        <item>3 Days</item>
+        <item>4 Days</item>
+        <item>1 Week</item>
+        <item>2 Weeks</item>
+        <item>1 Month</item>
+        <item>2 Months</item>
+        <item>3 Months</item>
+        <item>6 Months</item>
+        <item>1 Year</item>
+        <item>2 Years</item>
+        <item>Since beginning</item>
+    </string-array>
+
+    <string-array name="listValuesTime">
+        <item>oneDay</item>
+        <item>twoDays</item>
+        <item>threeDays</item>
+        <item>fourDays</item>
+        <item>oneWeek</item>
+        <item>twoWeeks</item>
+        <item>oneMonth</item>
+        <item>twoMonths</item>
+        <item>threeMonths</item>
+        <item>sixMonths</item>
+        <item>oneYear</item>
+        <item>twoYears</item>
+        <item>unlimited</item>
+    </string-array>
+
+    <string-array name="listEventsType">
+        <item>Rifle Assault</item>
+        <item>Gun Assault</item>
+        <item>Stabbing</item>
+        <item>Hostage situation</item>
+        <item>Car Bomb</item>
+        <item>Explosion</item>
+        <item>Poison Attack</item>
+        <item>Fire / Arson</item>
+        <item>Biohazard</item>
+        <item>Hackers</item>
+        <item>People in masks</item>
+        <item>Police intervention</item>
+        <item>Public speech</item>
+        <item>Video content</item>
+        <item>Twitter Statement</item>
+        <item>Facebook Statement</item>
+    </string-array>
+
+    <string-array name="listValuesEventsType">
+        <item>rifleAssault</item>
+        <item>gunAssault</item>
+        <item>stabbing</item>
+        <item>hostageSituation</item>
+        <item>carBomb</item>
+        <item>explosion</item>
+        <item>poisonAttack</item>
+        <item>fireArson</item>
+        <item>biohazard</item>
+        <item>hackers</item>
+        <item>peopleInMasks</item>
+        <item>policeIntervention</item>
+        <item>publicSpeech</item>
+        <item>videoFootage</item>
+        <item>twitterStatement</item>
+        <item>facebookStatement</item>
+    </string-array>
+</resources>

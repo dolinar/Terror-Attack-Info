@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Terror Attack Info</string>
+    <string name="map_not_ready">Map was not initialized!</string>
+
+    <string name="title_activity_maps">TAi</string>
+    <string name="title_launch">Terror Attack Info</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_about_us">About Us</string>
+    <string name="title_rate_us">Rate Us</string>
+    <string name="title_about_app">About This App</string>
+    <string name="title_share">Share On Social Media</string>
+    <string name="title_refresh">Refresh Content</string>
+    <string name="title_help">Help / Legend</string>
+
+    <string name="legend_black">ISIS / Islamic State / Daesh</string>
+    <string name="legend_red">Al Quaeda / Al Nusra</string>
+    <string name="legend_blue">Police, Government</string>
+    <string name="legend_green">Non-aligned, individual attackers</string>
+    <string name="legend_yellow">Smaller terrorist organisations - Kurdish PKK, Irish IRA…</string>
+
+    <string name="help_overall">QUICK HELP: If you are in the Map tab, click on the icons to show the precise location and a brief summary of the selected event. If you are in the Info tab,
+    click on an icon to jump in the Map tab.</string>
+    <string name="help_settings">SETTINGS: In the settings tab, you can set your preferences (if you want to be notified when there is something going on near you, you can change the map type AND MOST IMPORTANTLY, you can change how old displayed events can be and what type of events are displayed). For example, you can mark the Car Bomb icon only and only car bomb attacks will be displayed. When the event is older than your selection, it will disappear from map.</string>
+    <string name="help_icon_color">Icon\'s color represents specific group that caused the event shown in Map or Info tab.</string>
+    <string name="help_icon_type">If you don\'t know what certain icon means, you can look at the following legend.</string>
+
+    <string name="about">"I'm Rok Dolinar and I come from Slovenia. I\'m 21 years old and I am studying computer science in Ljubljana - Faculty of Computer and Information science. This is my first android app, so it is nowhere close to being perfect. However, you can help me with that. I will gladly read any suggestion, complaint or commendation on:"</string>
+    <string name="about_thanks">Special thanks to guys at: https://design.google.com/icons (for providing beautiful icons I used for ActionBar icons, Launcher icon…) and admins of LiveUAMap (http://liveuamap.com/) for letting me use icons I used for displaying events. I would also like to thank anyone that helped me create this app (Zak).</string>
+    <string name="about_app_help">For quick help, click on the question mark above this window.</string>
+    <string name="about_app">This application shows terror and terrorist attacks performed by different terrorist groups and individuals. Terrorism is becoming a huge topical issue and it is only getting worse with each year. This application will inform you (and notify, if you want to) about everything you need to know about events happening around you. It will cover everything - shootings, suicide attacks, hostage situations, police interventions and even stuff like video content, twitter statements from the government and more.</string>
+
+    <string name="notify">Check, if you want to receive notification when terror attack occurs</string>
+    <string name="notify_when">For any event that will occur closer than kilometers you entered, you will get a notification</string>
+    <string name="map_type">Choose map type</string>
+    <string name="event_age">Events older than your selection will not be shown on map</string>
+    <string name="event_type">Choose what types of events you want to have displayed on map and in Info tab.</string>
+</resources>
+
