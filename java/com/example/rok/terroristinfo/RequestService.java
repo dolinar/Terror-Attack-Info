@@ -21,7 +21,7 @@ public class RequestService extends Service {
         TimerTask hourlyTask = new TimerTask () {
             @Override
             public void run () {
-                //new RequestTask(getBaseContext()).execute("http://stackoverflow.com");
+                //new RequestAsyncTask(getBaseContext()).execute("http://stackoverflow.com");
             }
         };
         timer.schedule(hourlyTask, 0L, 1000*60*60);   // 1000*10*60 every 10 minutes

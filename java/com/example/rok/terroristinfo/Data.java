@@ -179,26 +179,26 @@ public class Data {
             case "video_yellow":
                 return R.drawable.video_yellow;
 
-            case "twitter_red":
+            case "twitterico_red":
                 return R.drawable.twitterico_red;
-            case "twitter_green":
+            case "twitterico_green":
                 return R.drawable.twitterico_green;
-            case "twitter_blue":
+            case "twitterico_blue":
                 return R.drawable.twitterico_blue;
-            case "twitter_black":
+            case "twitterico_black":
                 return R.drawable.twitterico_black;
-            case "twitter_yellow":
+            case "twitterico_yellow":
                 return R.drawable.twitterico_yellow;
 
-            case "fb_red":
+            case "facebookico_red":
                 return R.drawable.facebookico_red;
-            case "fb_green":
+            case "facebookico_green":
                 return R.drawable.facebookico_green;
-            case "fb_blue":
+            case "facebookico_blue":
                 return R.drawable.facebookico_blue;
-            case "fb_black":
+            case "facebookico_black":
                 return R.drawable.facebookico_black;
-            case "fb_yellow":
+            case "facebookico_yellow":
                 return R.drawable.facebookico_yellow;
 
             case "dead_red":

@@ -1,14 +1,11 @@
 package com.example.rok.terroristinfo;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,20 +19,20 @@ import java.util.Date;
 import java.util.Set;
 
 public class InfoFragment extends Fragment {
-
+    private SharedPreferencesInit spi;
     public static InfoFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt("ARG_PAGE", page);
         InfoFragment fragment = new InfoFragment();
         fragment.setArguments(args);
-
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+
+        spi = new SharedPreferencesInit(getActivity());
     }
 
     @Override
@@ -51,19 +48,21 @@ public class InfoFragment extends Fragment {
     }
 
     private void populateFragment(View view) {
-        if(view == null) { return; }
+        if (view == null) { return; }
 
         LinearLayout rootLayout = (LinearLayout) view.findViewById(R.id.linLayout);
 
-        MainActivity activity = (MainActivity) getActivity();
-        Data[] data = activity.getData();
+        Data[] data = DataHolder.getData();
 
+        if (data == null) {
+            return;
+        }
 
-        Set<String> selections = new SharedPreferencesInit(activity).getEventTypeSet();
+        Set<String> selections = spi.getEventTypeSet();
 
         Date calendarCurrentDate = calDate(new Date(), daysBeforeX());
 
-        for(int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             Date eventDate = data[i].getDate();
 
             Date calendarEventDate = calDate(eventDate, 0);
@@ -149,7 +148,7 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                new SharedPreferencesInit(getActivity()).setTextViewID(id);
+                spi.setTextViewID(id);
 
                 TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
                 tabLayout.getTabAt(0).select();
@@ -161,7 +160,7 @@ public class InfoFragment extends Fragment {
 
     private int daysBeforeX() {
 
-        String age = new SharedPreferencesInit(getActivity()).getPrefsString("listEventAge", "oneMonth");
+        String age = spi.getPrefsString("listEventAge", "oneMonth");
 
         switch (age) {
             case "oneDay":

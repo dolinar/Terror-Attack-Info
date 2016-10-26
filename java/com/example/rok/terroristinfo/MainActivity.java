@@ -1,52 +1,63 @@
 package com.example.rok.terroristinfo;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.main_activity);
 
         setTabs();
 
-        SharedPreferencesInit spi = new SharedPreferencesInit(this);
-        spi.recreateOnChange();
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "Please, check your internet connection and hit refresh button.", Toast.LENGTH_LONG).show();
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(listener);
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
+
         menu.clear();
         getMenuInflater().inflate(R.menu.main_menu, menu);
-
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings_id:
-                //actually preferences, but whatever
                 Intent settings = new Intent("android.intent.action.SETTINGS");
                 startActivity(settings);
                 break;
@@ -75,10 +86,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.refresh_id:
-                new RequestTask(this).execute("http://stackoverflow.com");
-                //recreate();
-                break;
+                if (isNetworkAvailable()) {
+                    new RequestAsyncTask(this).execute("http://10.10.10.100:8888/handler");
+                } else {
+                    Toast.makeText(this, "Please, check your internet connection and hit refresh button.", Toast.LENGTH_LONG).show();
+                }
 
+                break;
 
             default:
                 super.onOptionsItemSelected(item);
@@ -86,9 +100,8 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-
-
-    public Data[] getData() {
+    /*public Data[] dataGetter() {
+        return data;
         //later, return data from async method. data will be stored in an array. array -> make as many textviews as needed (array size)
         //"EEEE, dd MMMM yyyy"
 
@@ -108,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         data[1] = new Data((float)49.382753, (float)1.106722,
                 "hostage_black",
                 "Saint-Étienne-du-Rouvray, Normandy, France",
-                "Two Islamist terrorists took six people captive and later slit throat of one of them (85 year old priest). The terrorist were later shoat dead by police.",
+                "Two Islamist terrorists took six people captive and later slit throat of one of them (85 year old priest). The terrorist were later shot dead by police.",
                 "At about 9.45, two men wielding knives, handgun and fake explosive belts entered church as Mass was being held. Priest, three nuns and two parishioners were taken hostage. The attackers forced the priest to kneel at the altar and then slit his throat while screaming 'Allahu akbar'. Parishioner was later knifed and left critically wounded (he survived). Other Hostages were unhurt. Police tried to negotiate with perpetrators - without success. Later they tried to run out of the church with hostages as human shield, but the police successfully eliminated them.",
                 "Tuesday",
                 "July",
@@ -167,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                 "biohazard");
 
         return data;
-    }
+    }*/
 
     private void setTabs() {
         // Get the ViewPager and set it's PagerAdapter so that it can display items
@@ -181,6 +194,12 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
     }
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 
     private void launchMarket() {
         Uri uri = Uri.parse("market://details?id=" + getPackageName());
@@ -192,14 +211,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+    SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
             // listener implementation
             if (key.equals("listEventType") || key.equals("listEventAge")) {
                 recreate();
             }
         }
-    }; */
+    };
 
     @Override
     protected void onDestroy() {
@@ -222,5 +241,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
     }
+
 }
 

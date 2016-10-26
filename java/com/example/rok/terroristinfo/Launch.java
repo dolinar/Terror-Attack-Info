@@ -4,22 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-/**
- * Created by Rok on 27.7.2016.
- */
 public class Launch extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launch_view);
 
+        new RequestAsyncTask(this).execute("http://10.10.10.100:8888/handler");
+
         Thread t = new Thread() {
             public void run() {
                 try {
-                    sleep(2500);
+                    sleep(5000);
 
                 } catch (InterruptedException e) {
-                    System.out.println("Error: " + e.getMessage());
                     e.printStackTrace();
                 } finally {
                     Intent mapAct = new Intent("android.intent.action.MAPS");

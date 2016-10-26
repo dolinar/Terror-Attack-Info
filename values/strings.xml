@@ -34,5 +34,6 @@
     <string name="map_type">Choose map type</string>
     <string name="event_age">Events older than your selection will not be shown on map</string>
     <string name="event_type">Choose what types of events you want to have displayed on map and in Info tab.</string>
+    <string name="data_loading">Please wait, data is loading …</string>
 </resources>
 

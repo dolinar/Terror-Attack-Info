@@ -3,6 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/info"
     >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_m"
+        android:layout_marginTop="90dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/data_loading"
+        android:textSize="16sp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="100dp"
+        />
 </LinearLayout>

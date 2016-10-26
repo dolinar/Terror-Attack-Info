@@ -32,7 +32,7 @@ import java.util.Set;
 
 
 public class MapFragment extends Fragment {
-
+    private SharedPreferencesInit spi;
     private HashMap<Integer, Marker> hash = new HashMap<>();
     private int textViewID = -1;
     private GoogleMap googleMap;
@@ -50,6 +50,7 @@ public class MapFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        spi = new SharedPreferencesInit(getActivity());
     }
 
     @Nullable
@@ -78,7 +79,7 @@ public class MapFragment extends Fragment {
 
                 setMarkers(mMap);
 
-                changeType(new SharedPreferencesInit(getActivity()).getPrefsString("listMapType", "normal"));
+                changeType(spi.getPrefsString("listMapType", "normal"));
 
             }
         });
@@ -88,15 +89,18 @@ public class MapFragment extends Fragment {
 
     private void setMarkers(GoogleMap mMap) {
 
-        MainActivity activity = (MainActivity) getActivity();
-        Data[] data = activity.getData();
+        Data[] data = DataHolder.getData();
+
+        if (data == null) {
+            return;
+        }
 
         //get event types from sharedpreferences
-        Set<String> selections = new SharedPreferencesInit(activity).getEventTypeSet();
+        Set<String> selections = spi.getEventTypeSet();
 
         Date calendarCurrentDate = calDate(new Date(), daysBeforeX());
 
-        for(int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
 
             Date eventDate = data[i].getDate();
 
@@ -130,7 +134,7 @@ public class MapFragment extends Fragment {
 
 
     private void onMarkerClick(final GoogleMap mMap) {
-        if(!checkReady()) {
+        if (!checkReady()) {
             return;
         }
         mMap.setOnMarkerClickListener(
@@ -145,7 +149,6 @@ public class MapFragment extends Fragment {
     }
 
     private void zoomOnTextViewClick(final GoogleMap mMap) {
-        SharedPreferencesInit spi = new SharedPreferencesInit(getActivity());
         textViewID = spi.getTextViewID();
 
         if (textViewID != -1) {
@@ -218,7 +221,7 @@ public class MapFragment extends Fragment {
 
     private int daysBeforeX() {
 
-        String age = new SharedPreferencesInit(getActivity()).getPrefsString("listEventAge", "oneMonth");
+        String age = spi.getPrefsString("listEventAge", "oneMonth");
 
         switch (age) {
             case "oneDay":
