@@ -29,13 +29,14 @@ class RequestAsyncTask extends AsyncTask<String, String, String> {
 
     private ProgressDialog dialog;
     private Activity       activity;
-
+    private Context        context;
     //show toast in onPostExecute if IOException was caught
     boolean caughtException = false;
 
 
-    public RequestAsyncTask(Activity activity) {
-        this.activity      = activity;
+    public RequestAsyncTask(Activity activity, Context context) {
+        this.activity = activity;
+        this.context  = context;
     }
 
     @Override
@@ -101,10 +102,15 @@ class RequestAsyncTask extends AsyncTask<String, String, String> {
             dialog.dismiss();
         }
 
-        DataHolder.setData(result);
+        if (result != null) {
+            DataHolder.storeData(result, context);
+            DataHolder.setData(result);
 
-        if (activity instanceof AppCompatActivity && result != null ) {
-            activity.recreate();
+            if (activity instanceof AppCompatActivity) {
+                activity.recreate();
+            }
+        } else {
+            DataHolder.setDataFromInternalStorage(context);
         }
     }
 }

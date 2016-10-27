@@ -1,7 +1,10 @@
 package com.example.rok.terroristinfo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 public class Launch extends Activity {
@@ -10,7 +13,12 @@ public class Launch extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launch_view);
 
-        new RequestAsyncTask(this).execute("http://10.10.10.100:8888/handler");
+        if (isNetworkAvailable()) {
+            new RequestAsyncTask(this, this).execute("http://10.10.10.100:8888/handler");
+        } else {
+            DataHolder.setDataFromInternalStorage(this);
+        }
+
 
         Thread t = new Thread() {
             public void run() {
@@ -31,5 +39,12 @@ public class Launch extends Activity {
         t.start();
 
 
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
